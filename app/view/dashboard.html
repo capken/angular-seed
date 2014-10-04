@@ -1,0 +1,52 @@
+<ul class="nav nav-tabs nav-justified">
+  <li class="active"><a href="#">巡检异常</a></li>
+  <li><a href="#">巡检状态</a></li>
+  <li><a href="#">巡检任务</a></li>
+  <li><a href="#">巡检部位开启</a></li>
+</ul>
+
+<br/>
+
+<form class="form-inline" role="form">
+  <div class="form-group">
+    <label for="">时间范围</label>
+    <input type="text" class="form-control" ng-model="startDate">
+    <input type="text" class="form-control" ng-model="endDate">
+  </div>
+  <div class="form-group">
+    <label for="">选择设备</label>
+    <select class="form-control" ng-model="equipId" 
+      ng-options="equip.code as equip.name for equip in equipments">
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="query()">查询</button>
+</form>
+
+<br />
+
+<div class="row" id="chart">
+</div>
+
+<h4 class="sub-header">异常情况清单</h4>
+<div id="tableOfRecords" class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>点检部位</th>
+        <th>点检任务</th>
+        <th>首次异常时刻</th>
+        <th>异常详情</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="record in records">
+        <td>{{$index + 1}}</td>
+        <td>{{record.spot}}</td>
+        <td>{{record.task}}</td>
+        <td>{{record.firstExcep | date:'MM/dd/yyyy, hh:mm'}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
